@@ -39,6 +39,15 @@ class ZPcController(PcControllerBase):
         self.key_interact: str = self.game_config.key_interact
         self.key_lock: str = self.game_config.key_lock
         self.key_chain_cancel: str = self.game_config.key_chain_cancel
+        # self.key_normal_w: str = self.game_config.key_normal_w
+        # self.key_normal_s: str = self.game_config.key_normal_s
+        # self.key_normal_a: str = self.game_config.key_normal_a
+        # self.key_normal_d: str = self.game_config.key_normal_d
+        self.key_normal_up: str = self.game_config.key_normal_up
+        self.key_normal_down: str = self.game_config.key_normal_down
+        self.key_normal_left: str = self.game_config.key_normal_left
+        self.key_normal_right: str = self.game_config.key_normal_right
+        # self.key_normal_space: str = self.game_config.key_normal_space
 
         self.is_moving: bool = False  # 是否正在移动
         self.turn_dx: float = game_config.turn_dx
@@ -74,6 +83,15 @@ class ZPcController(PcControllerBase):
         self.key_interact: str = self.game_config.key_interact
         self.key_lock: str = self.game_config.key_lock
         self.key_chain_cancel: str = self.game_config.key_chain_cancel
+        # self.key_normal_w: str = self.game_config.key_normal_w
+        # self.key_normal_s: str = self.game_config.key_normal_s
+        # self.key_normal_a: str = self.game_config.key_normal_a
+        # self.key_normal_d: str = self.game_config.key_normal_d
+        self.key_normal_up: str = self.game_config.key_normal_up
+        self.key_normal_down: str = self.game_config.key_normal_down
+        self.key_normal_left: str = self.game_config.key_normal_left
+        self.key_normal_right: str = self.game_config.key_normal_right
+        # self.key_normal_space: str = self.game_config.key_normal_space
 
     def enable_xbox(self):
         PcControllerBase.enable_xbox(self)
@@ -317,3 +335,102 @@ class ZPcController(PcControllerBase):
         """
         self.is_moving = False
         self.move_w(release=True)
+
+    def ridu_sgotboo_w(self, press: bool = False, press_time: Optional[float] = None, release: bool = False) -> None:
+        """
+        丽都有布活动-左手-上
+        """
+        if press:
+            self.btn_controller.press(self.key_move_w, press_time)
+        elif release:
+            self.btn_controller.release(self.key_move_w)
+        else:
+            self.btn_controller.tap(self.key_move_w)
+
+    def ridu_sgotboo_s(self, press: bool = False, press_time: Optional[float] = None, release: bool = False) -> None:
+        """
+        丽都有布活动-左手-下
+        """
+        if press:
+            self.btn_controller.press(self.key_move_s, press_time)
+        elif release:
+            self.btn_controller.release(self.key_move_s)
+        else:
+            self.btn_controller.tap(self.key_move_s)
+
+    def ridu_sgotboo_a(self, press: bool = False, press_time: Optional[float] = None, release: bool = False) -> None:
+        """
+        丽都有布活动-左手-左
+        """
+        if press:
+            self.btn_controller.press(self.key_move_a, press_time)
+        elif release:
+            self.btn_controller.release(self.key_move_a)
+        else:
+            self.btn_controller.tap(self.key_move_a)
+
+    def ridu_sgotboo_d(self, press: bool = False, press_time: Optional[float] = None, release: bool = False) -> None:
+        """
+        丽都有布活动-左手-右
+        """
+        if press:
+            self.btn_controller.press(self.key_move_d, press_time)
+        elif release:
+            self.btn_controller.release(self.key_move_d)
+        else:
+            self.btn_controller.tap(self.key_move_d)
+
+    def ridu_sgotboo_up(self, press: bool = False, press_time: Optional[float] = None, release: bool = False) -> None:
+        """
+        丽都有布活动-右手-上
+        """
+        if press:
+            self.btn_controller.press(self.key_normal_up, press_time)
+        elif release:
+            self.btn_controller.release(self.key_normal_up)
+        else:
+            self.btn_controller.tap(self.key_normal_up)
+
+    def ridu_sgotboo_down(self, press: bool = False, press_time: Optional[float] = None, release: bool = False) -> None:
+        """
+        丽都有布活动-右手-下
+        """
+        if press:
+            self.btn_controller.press(self.key_normal_down, press_time)
+        elif release:
+            self.btn_controller.release(self.key_normal_down)
+        else:
+            self.btn_controller.tap(self.key_normal_down)
+
+    def ridu_sgotboo_left(self, press: bool = False, press_time: Optional[float] = None, release: bool = False) -> None:
+        """
+        丽都有布活动-右手-左
+        """
+        if press:
+            self.btn_controller.press(self.key_normal_left, press_time)
+        elif release:
+            self.btn_controller.release(self.key_normal_left)
+        else:
+            self.btn_controller.tap(self.key_normal_left)
+
+    def ridu_sgotboo_right(self, press: bool = False, press_time: Optional[float] = None, release: bool = False) -> None:
+        """
+        丽都有布活动-右手-右
+        """
+        if press:
+            self.btn_controller.press(self.key_normal_right, press_time)
+        elif release:
+            self.btn_controller.release(self.key_normal_right)
+        else:
+            self.btn_controller.tap(self.key_normal_right)
+
+    def ridu_sgotboo_space(self, press: bool = False, press_time: Optional[float] = None, release: bool = False) -> None:
+        """
+        丽都有布活动-中间-空格
+        """
+        if press:
+            self.btn_controller.press(self.key_switch_next, press_time)
+        elif release:
+            self.btn_controller.release(self.key_switch_next)
+        else:
+            self.btn_controller.tap(self.key_switch_next)

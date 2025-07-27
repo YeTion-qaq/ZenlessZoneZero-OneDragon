@@ -138,6 +138,78 @@ class GameConfig(BasicGameConfig):
         self.update('key_chain_cancel', new_value)
 
     @property
+    def key_normal_w(self) -> str:
+        return self.get('key_normal_w', 'w')
+    
+    @key_normal_w.setter
+    def key_normal_w(self, new_value: str) -> None:
+        self.update('key_normal_w', new_value)
+
+    @property
+    def key_normal_s(self) -> str:
+        return self.get('key_normal_s', 's')
+    
+    @key_normal_s.setter
+    def key_normal_s(self, new_value: str) -> None:
+        self.update('key_normal_s', new_value)
+
+    @property
+    def key_normal_a(self) -> str:
+        return self.get('key_normal_a', 'a')
+
+    @key_normal_a.setter
+    def key_normal_a(self, new_value: str) -> None:
+        self.update('key_normal_a', new_value)
+
+    @property
+    def key_normal_d(self) -> str:
+        return self.get('key_normal_d', 'd')
+
+    @key_normal_d.setter
+    def key_normal_d(self, new_value: str) -> None:
+        self.update('key_normal_d', new_value)
+
+    @property
+    def key_normal_up(self) -> str:
+        return self.get('key_normal_up', 'up')
+    
+    @key_normal_up.setter
+    def key_normal_up(self, new_value: str) -> None:
+        self.update('key_normal_up', new_value)
+
+    @property
+    def key_normal_down(self) -> str:
+        return self.get('key_normal_down', 'down')
+    
+    @key_normal_down.setter
+    def key_normal_down(self, new_value: str) -> None:
+        self.update('key_normal_down', new_value)
+
+    @property
+    def key_normal_left(self) -> str:
+        return self.get('key_normal_left', 'left')
+    
+    @key_normal_left.setter
+    def key_normal_left(self, new_value: str) -> None:
+        self.update('key_normal_left', new_value)
+
+    @property
+    def key_normal_right(self) -> str:
+        return self.get('key_normal_right', 'right')
+    
+    @key_normal_right.setter
+    def key_normal_right(self, new_value: str) -> None:
+        self.update('key_normal_right', new_value)
+
+    @property
+    def key_normal_space(self) -> str:
+        return self.get('key_normal_space', 'space')
+    
+    @key_normal_space.setter
+    def key_normal_space(self, new_value: str) -> None:
+        self.update('key_normal_space', new_value)
+
+    @property
     def gamepad_type(self) -> str:
         return self.get('gamepad_type', GamepadTypeEnum.NONE.value.value)
 

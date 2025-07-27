@@ -173,6 +173,18 @@ class SettingGameInterface(VerticalScrollInterface):
         self.key_chain_cancel_opt = KeySettingCard(icon=FluentIcon.GAME, title='连携技-取消')
         key_group.addSettingCard(self.key_chain_cancel_opt)
 
+        self.key_normal_up_opt = KeySettingCard(icon=FluentIcon.GAME, title='普通-上')
+        key_group.addSettingCard(self.key_normal_up_opt)
+
+        self.key_normal_down_opt = KeySettingCard(icon=FluentIcon.GAME, title='普通-下')
+        key_group.addSettingCard(self.key_normal_down_opt)
+
+        self.key_normal_left_opt = KeySettingCard(icon=FluentIcon.GAME, title='普通-左')
+        key_group.addSettingCard(self.key_normal_left_opt)
+
+        self.key_normal_right_opt = KeySettingCard(icon=FluentIcon.GAME, title='普通-右')
+        key_group.addSettingCard(self.key_normal_right_opt)
+
         return key_group
 
     def _get_gamepad_group(self) -> QWidget:
@@ -323,6 +335,10 @@ class SettingGameInterface(VerticalScrollInterface):
         self.key_move_d_opt.init_with_adapter(self.ctx.game_config.get_prop_adapter('key_move_d'))
         self.key_lock_opt.init_with_adapter(self.ctx.game_config.get_prop_adapter('key_lock'))
         self.key_chain_cancel_opt.init_with_adapter(self.ctx.game_config.get_prop_adapter('key_chain_cancel'))
+        self.key_normal_up_opt.init_with_adapter(self.ctx.game_config.get_prop_adapter('key_normal_up'))
+        self.key_normal_down_opt.init_with_adapter(self.ctx.game_config.get_prop_adapter('key_normal_down'))
+        self.key_normal_left_opt.init_with_adapter(self.ctx.game_config.get_prop_adapter('key_normal_left'))
+        self.key_normal_right_opt.init_with_adapter(self.ctx.game_config.get_prop_adapter('key_normal_right'))
 
         self._update_gamepad_part()
 

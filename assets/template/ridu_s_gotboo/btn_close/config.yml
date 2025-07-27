@@ -1,0 +1,8 @@
+sub_dir: ridu_s_gotboo
+template_id: btn_close
+template_name: 丽都有布-按键-关闭
+template_shape: rectangle
+auto_mask: true
+point_list:
+- 1434, 202
+- 1488, 244
