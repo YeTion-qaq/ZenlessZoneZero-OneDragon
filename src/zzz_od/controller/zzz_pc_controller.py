@@ -367,7 +367,7 @@ class ZPcController(PcControllerBase):
         丽都有布活动-右手-上    
         """
         if press:
-            self.btn_controller.press(press_time,key='up')
+            self.btn_controller.press(key='up', press_time=press_time)
         elif release:
             self.btn_controller.release(key='up')
         else:
@@ -378,7 +378,7 @@ class ZPcController(PcControllerBase):
         丽都有布活动-右手-下
         """
         if press:
-            self.btn_controller.press(press_time,key='down')
+            self.btn_controller.press(key='down', press_time=press_time)
         elif release:
             self.btn_controller.release(key='down')
         else:
@@ -389,7 +389,7 @@ class ZPcController(PcControllerBase):
         丽都有布活动-右手-左
         """
         if press:
-            self.btn_controller.press(press_time,key='left')
+            self.btn_controller.press(key='left', press_time=press_time)
         elif release:
             self.btn_controller.release(key='left')
         else:
@@ -400,7 +400,7 @@ class ZPcController(PcControllerBase):
         丽都有布活动-右手-右
         """
         if press:
-            self.btn_controller.press(press_time,key='right')
+            self.btn_controller.press(key='right', press_time=press_time)
         elif release:
             self.btn_controller.release(key='right')
         else:
