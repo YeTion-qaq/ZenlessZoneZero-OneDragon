@@ -1,0 +1,8 @@
+sub_dir: ridu_s_gotboo
+template_id: action_left_up
+template_name: 丽都有布-动作-左手-上
+template_shape: circle
+auto_mask: true
+point_list:
+- 734, 183
+- 734, 221

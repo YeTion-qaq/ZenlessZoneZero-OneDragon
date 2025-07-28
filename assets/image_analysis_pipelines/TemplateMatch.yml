@@ -1,0 +1,9 @@
+- step: 按区域裁剪
+  params:
+    screen_name: 丽都有布
+    area_name: 动作-1
+- step: 模板匹配
+  params:
+    template_name: ''
+    threshold: 0.8
+    method: TM_CCOEFF_NORMED

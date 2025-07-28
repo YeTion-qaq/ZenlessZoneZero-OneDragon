@@ -38,6 +38,10 @@ class CommissionAssistantApp(ZApplication):
         self.fishing_btn_pressed: Optional[str] = None  # 钓鱼在按下的按键
         self.fishing_done: bool = False  # 钓鱼是否结束 通常是比赛类 最后会有挑战结果显示
 
+        self.ridu_s_gotboo_done: bool = False  # 丽都有布是否结束 通常是比赛类 最后会有挑战结果显示
+        self.ridu_s_gotboo_flip_checked: Optional[str] = None  # 丽都有布是否翻转模式
+        self.ridu_s_gotboo_action_num: int = 0  # 丽都有布已经识别的动作数量
+
     def handle_init(self):
         self._listen_btn()
 
@@ -73,6 +77,8 @@ class CommissionAssistantApp(ZApplication):
     @node_from(from_name='自动战斗模式')
     @node_from(from_name='钓鱼')
     @node_from(from_name='钓鱼', success=False)
+    @node_from(from_name='丽都有布')
+    @node_from(from_name='丽都有布', success=False)
     @operation_node(name='自动对话模式', is_start_node=True)
     def dialog_mode(self) -> OperationRoundResult:
         if self.run_mode in [1, 2]:
@@ -114,6 +120,11 @@ class CommissionAssistantApp(ZApplication):
         if result is not None:
             return result
 
+        # 判断丽都有布
+        result = self.check_ridu_s_gotboo()
+        if result is not None:
+            return result
+        
         # 剧情模式
         result = self.check_story_mode()
         if result is not None:
@@ -297,6 +308,25 @@ class CommissionAssistantApp(ZApplication):
         self.ctx.controller.mouse_move(area.left_top)  # 移开鼠标 防止遮挡指令
         return self.round_success('钓鱼')
 
+    def check_ridu_s_gotboo(self) -> Optional[OperationRoundResult]:
+        """
+        判断是否进入了丽都有布画面
+        - 左上角有返回
+        - 右上角有跳过
+        @param screen: 游戏画面
+        @return:
+        """
+        result = self.round_by_find_area(self.last_screenshot, '丽都有布', '按钮-返回')
+        if not result.is_success:
+            return None
+        
+        result = self.round_by_find_and_click_area(self.last_screenshot, '丽都有布', '按钮-跳过')
+        if not result.is_success:
+            return None
+        
+        self.ridu_s_gotboo_done = False
+        return self.round_success('丽都有布')
+
     def check_story_mode(self) -> Optional[OperationRoundResult]:
         """
         判断是否进入了剧情模式 右上角有 等待/自动/跳过
@@ -435,6 +465,200 @@ class CommissionAssistantApp(ZApplication):
             result = self.round_by_find_area(self.last_screenshot, '大世界-普通', '按钮-信息')
             if result.is_success:
                 return self.round_success('钓鱼结束')
+
+        return self.round_retry('未识别到指令', wait=0.1)
+    
+    @node_from(from_name='自动对话模式', status='丽都有布')
+    @operation_node('丽都有布', node_max_retry_times=50)  # 约5s没识别到指令就退出
+    def on_ridu_s_gotboo(self) -> OperationRoundResult:
+
+        # 动作列表定义
+        action_list = [
+            'action_skip',
+            'action_space',
+            'action_left_down', 
+            'action_left_left',
+            'action_left_right', 
+            'action_left_up', 
+            'action_right_down', 
+            'action_right_left',    
+            'action_right_up',
+            'action_right_right'
+        ]
+        
+        action_map = {
+            'action_space': 'ridu_sgotboo_space',
+            'action_left_down': 'ridu_sgotboo_s',
+            'action_left_up': 'ridu_sgotboo_w',
+            'action_left_left': 'ridu_sgotboo_a',
+            'action_left_right': 'ridu_sgotboo_d',
+            'action_right_down': 'ridu_sgotboo_down',
+            'action_right_up': 'ridu_sgotboo_up',
+            'action_right_left': 'ridu_sgotboo_left',
+            'action_right_right': 'ridu_sgotboo_right',
+        }
+
+        flip_map = {
+            'action_left_down': 'action_left_up',
+            'action_left_up': 'action_left_down',
+            'action_left_left': 'action_left_right',
+            'action_left_right': 'action_left_left',
+            'action_right_down': 'action_right_up',
+            'action_right_up': 'action_right_down',
+            'action_right_left': 'action_right_right',
+            'action_right_right': 'action_right_left',
+        }
+
+        # 确定当前要识别的区域
+        current_action_area = f'动作-{self.ridu_s_gotboo_action_num + 1}'
+
+
+
+        # 判断左上角是否有FEVER字样来是否处于关卡页面
+        fever_result = self.round_by_find_area(self.last_screenshot, '丽都有布', '文本-FEVER')
+
+        if  fever_result.is_success:
+            self.ridu_s_gotboo_done = False
+
+        if  fever_result.is_success:
+            score_result = self.round_by_find_area(self.last_screenshot, '丽都有布', '文本-分数')
+            if score_result.is_success:
+                """
+                如果有分数，说明是演出期间，需要识别动作开始操作
+                - 执行一次
+                    - 判断当前关卡的模式（单手四键、双手四键（双手五键）、全九键）
+                    - 判断按键是否翻转
+                - 依次识别八个动作区域并执行相应的动作，直到识别完毕或者提前识别到尽头（因为有些不用做满八个动作）
+                """
+                if self.ridu_s_gotboo_flip_checked == None:
+
+                    # 判断是否翻转
+                    # 先检查左手上键
+                    left_up_result = self.round_by_find_area_of_custom_template(self.last_screenshot, 
+                                                                             '丽都有布',
+                                                                             '识别-左手-上', 
+                                                                             'ridu_s_gotboo', 
+                                                                             'reco_left_up')
+                    if left_up_result.is_success:
+                        # 如果左手上键识别成功，说明未翻转
+                        self.ridu_s_gotboo_flip_checked = 'False'
+                        return self.round_wait('丽都有布按键未翻转-1', wait=0.1)
+                    else:
+                        # 如果左手上键未识别成功，说明按键可能不存在或者翻转了
+                        left_up_result_flip = self.round_by_find_area_of_custom_template(self.last_screenshot, 
+                                                                                 '丽都有布',
+                                                                                 '识别-左手-上', 
+                                                                                 'ridu_s_gotboo', 
+                                                                                 'reco_left_up_flip')
+                        if left_up_result_flip.is_success:
+                            # 如果左手上键翻转识别成功，说明按键翻转了
+                            self.ridu_s_gotboo_flip_checked = 'True'
+                            return self.round_wait('丽都有布按键已翻转-2', wait=0.1)
+                        else:
+                            # 如果左手上键翻转未识别成功，说明按键不存在，检查左手左键
+                            left_left_result = self.round_by_find_area_of_custom_template(self.last_screenshot, 
+                                                                                 '丽都有布',
+                                                                                 '识别-左手-左', 
+                                                                                 'ridu_s_gotboo', 
+                                                                                 'reco_left_left')
+                            if left_left_result.is_success:
+                                # 如果左手左键识别成功，说明未翻转
+                                self.ridu_s_gotboo_flip_checked = 'False'
+                                return self.round_wait('丽都有布按键未翻转-3', wait=0.1)
+                            else:
+                                # 如果左手左键未识别成功，说明按键可能不存在或者翻转了
+                                left_left_result_flip = self.round_by_find_area_of_custom_template(self.last_screenshot, 
+                                                                                     '丽都有布',
+                                                                                     '识别-左手-左', 
+                                                                                     'ridu_s_gotboo', 
+                                                                                     'reco_left_left_flip')
+                                if left_left_result_flip.is_success:
+                                    # 如果左手左键翻转识别成功，说明按键翻转了
+                                    self.ridu_s_gotboo_flip_checked = 'True'
+                                    return self.round_wait('丽都有布按键已翻转-4', wait=0.1)
+                                else:
+                                    return self.round_retry('丽都有布按键是否翻转未识别成功', wait=0.1)
+
+                # 遍历所有可能的动作类型
+                for action in action_list:
+                    # 尝试识别当前区域的动作
+                    result = self.round_by_find_area_of_custom_template(
+                        self.last_screenshot, 
+                        '丽都有布',
+                        current_action_area,
+                        'ridu_s_gotboo',
+                        action
+                    )
+                    
+                    if result.is_success:
+                        # 执行识别到的动作
+                        # 更新动作计数
+                        self.ridu_s_gotboo_action_num += 1
+                        # 跳过动作不需要执行
+                        if action == 'action_skip':
+
+                            return self.round_wait(f'跳过动作-{self.ridu_s_gotboo_action_num}', wait=0.05)
+                        
+                        if self.ridu_s_gotboo_flip_checked == 'True':
+                            action = flip_map.get(action, action)
+                        
+                        # 执行动作
+                        method_name = action_map.get(action)
+                        if method_name:
+                            controller_func = getattr(self.ctx.controller, method_name)
+                            controller_func(press=True, press_time=0.05)
+                        
+                        # 检查是否所有动作都已完成
+                        if self.ridu_s_gotboo_action_num >= 7:
+                            return self.round_wait('所有动作完成', wait=1)
+                        
+                        # 返回识别结果
+                        return self.round_wait(action, wait=0.1)
+                
+                # 如果没有识别到任何动作
+                return self.round_wait(f'在区域{self.ridu_s_gotboo_action_num + 1}未识别到动作', wait=0.1)
+
+            else:
+                # 如果没有分数，说明在过动画
+                self.ridu_s_gotboo_action_num = 0  # 重置计数器
+                return self.round_wait('动画期间', wait=0.1)
+            # # 此处开始做画面判断以及相应的动作
+            # self.round_by_find_area_of_custom_template(
+            #     self.last_screenshot, '丽都有布', '动作-1',
+            #     'ridu_s_gotboo',
+            #     'action_left_down'
+            # )
+
+        if not fever_result.is_success:
+            # 有些关卡有弹窗，导致开始时识别不到FEVER
+            result = self.round_by_find_and_click_area(self.last_screenshot, '丽都有布', '按钮-下一页')
+            # 如果有下一页，说明还没点完  
+            if result.is_success:
+                # 保存一下刚刚的结果，以便区分“下一页”是否识别成功
+                result_temp = result
+                result = self.round_by_find_and_click_area(self.last_screenshot, '丽都有布', '按钮-关闭')
+                if result.is_success:
+                    # 如果识别成功，说明弹窗可以关闭了
+                    return self.round_wait(result.status, wait=0.1)
+                else:
+                    # 如果没有识别成功，说明弹窗无法关闭，继续识别下一页
+                    return self.round_wait(result_temp.status, wait=0.1)
+
+            result = self.round_by_find_area(self.last_screenshot, '丽都有布', '文本-伊埃斯')
+            if result.is_success:  # 只判断确定有时候会误判 加上伊埃斯
+                result = self.round_by_find_and_click_area(self.last_screenshot, '丽都有布', '按钮-确认')
+                if result.is_success:
+                    self.ridu_s_gotboo_done = True
+                    self.ridu_s_gotboo_action_num = 0  # 重置计数器
+                    self.ridu_s_gotboo_flip_checked = None  # 重置翻转检查
+                    return self.round_wait(result.status, wait=0.1)
+                        
+            if self.ridu_s_gotboo_done:
+                return self.round_success('丽都有布结束')
+        
+            result = self.round_by_find_area(self.last_screenshot, '大世界-普通', '按钮-信息')
+            if result.is_success:
+                return self.round_success('丽都有布结束')
 
         return self.round_retry('未识别到指令', wait=0.1)
 

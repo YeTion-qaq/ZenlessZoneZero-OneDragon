@@ -1,0 +1,8 @@
+sub_dir: ridu_s_gotboo
+template_id: reco_right_left
+template_name: 丽都有布-识别-右手-左
+template_shape: circle
+auto_mask: true
+point_list:
+- 1491, 808
+- 1491, 858
