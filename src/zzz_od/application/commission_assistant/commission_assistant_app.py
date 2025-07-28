@@ -649,6 +649,8 @@ class CommissionAssistantApp(ZApplication):
             if result.is_success:  # 只判断确定有时候会误判 加上伊埃斯
                 result = self.round_by_find_and_click_area(self.last_screenshot, '丽都有布', '按钮-确认')
                 if result.is_success:
+                    # 再按一次，确保退出结算界面，否则这个结算界面会让委托助手误识别成剧情对话，然后点击<重新开始>
+                    result = self.round_by_click_area('丽都有布', '按钮-确认')
                     self.ridu_s_gotboo_done = True
                     self.ridu_s_gotboo_action_num = 0  # 重置计数器
                     self.ridu_s_gotboo_flip_checked = None  # 重置翻转检查
