@@ -26,6 +26,42 @@ class FindAreaResultEnum(Enum):
     FALSE: int = 0  # 找不到
     AREA_NO_CONFIG: int = -2  # 区域配置找不到
 
+def find_area_of_custom_template(ctx: OneDragonContext, screen: MatLike, screen_name: str, area_name: str, template_sub_dir: str, template_id: str) -> FindAreaResultEnum:
+    """
+    在自定义模板中查找区域
+    :param ctx: 上下文
+    :param screen: 游戏截图
+    :param screen_name: 画面名称
+    :param area_name: 区域名称
+    :param template_sub_dir: 模板子目录
+    :param template_id: 模板ID
+    :return: 结果
+    """
+    area: ScreenArea = ctx.screen_loader.get_area(screen_name, area_name)
+    return find_area_of_custom_template_in_screen(ctx, screen, area, template_sub_dir, template_id)
+
+def find_area_of_custom_template_in_screen(ctx: OneDragonContext, screen: MatLike, area: ScreenArea, template_sub_dir: str, template_id: str) -> FindAreaResultEnum:
+    """
+    在自定义模板中查找区域
+    :param ctx: 上下文
+    :param screen: 游戏截图
+    :param template_sub_dir: 模板子目录
+    :param template_id: 模板ID
+    :return: 结果
+    """
+    if area is None:
+        return FindAreaResultEnum.AREA_NO_CONFIG
+    
+    find: bool = False
+    rect = area.rect
+    part = cv2_utils.crop_image_only(screen, rect)
+
+    mrl = ctx.tm.match_template(part, template_sub_dir, template_id,
+                                threshold=area.template_match_threshold)
+    
+    find = mrl.max is not None
+    return FindAreaResultEnum.TRUE if find else FindAreaResultEnum.FALSE
+
 
 def find_area(ctx: OneDragonContext, screen: MatLike, screen_name: str, area_name: str) -> FindAreaResultEnum:
     """

@@ -768,6 +768,38 @@ class Operation(OperationBase):
         else:
             return self.round_retry(status='未知状态', wait=retry_wait, wait_round_time=retry_wait_round)
 
+    def round_by_find_area_of_custom_template(self, screen: np.ndarray, screen_name: str, area_name: str, template_sub_dir: str, template_id: str,
+                           success_wait: Optional[float] = None, success_wait_round: Optional[float] = None,
+                           retry_wait: Optional[float] = None, retry_wait_round: Optional[float] = None
+                           ) -> OperationRoundResult:
+        """检查是否能在屏幕上找到自定义模板区域。
+
+        Args:
+            screen: 截图图像。
+            screen_name: 屏幕名称。
+            area_name: 区域名称。
+            template_sub_dir: 模板子目录。
+            template_id: 模板ID。
+            success_wait: 成功后等待时间（秒）。默认为None。
+            success_wait_round: 成功后等待直到轮次时间达到此值，如果设置了success_wait则忽略。默认为None。
+            retry_wait: 失败后等待时间（秒）。默认为None。
+            retry_wait_round: 失败后等待直到轮次时间达到此值，如果设置了retry_wait则忽略。默认为None。
+
+        Returns:
+            OperationRoundResult: 匹配结果。
+        """
+        result = screen_utils.find_area_of_custom_template(
+            ctx=self.ctx, screen=screen, screen_name=screen_name, area_name=area_name,
+            template_sub_dir=template_sub_dir, template_id=template_id
+        )
+        if result == FindAreaResultEnum.AREA_NO_CONFIG:
+            return self.round_fail(status=f'区域未配置 {area_name}')
+        elif result == FindAreaResultEnum.TRUE:
+            return self.round_success(status=area_name, wait=success_wait, wait_round_time=success_wait_round)
+        else:
+            return self.round_retry(status=f'未找到 {area_name}', wait=retry_wait, wait_round_time=retry_wait_round)
+
+
     def round_by_find_area(self, screen: np.ndarray, screen_name: str, area_name: str,
                            success_wait: Optional[float] = None, success_wait_round: Optional[float] = None,
                            retry_wait: Optional[float] = None, retry_wait_round: Optional[float] = None
