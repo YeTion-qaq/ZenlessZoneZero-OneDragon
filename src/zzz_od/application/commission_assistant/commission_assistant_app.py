@@ -609,7 +609,8 @@ class CommissionAssistantApp(ZApplication):
                             controller_func(press=True, press_time=0.05)
                         
                         # 检查是否所有动作都已完成
-                        if self.ridu_s_gotboo_action_num >= 7:
+                        if self.ridu_s_gotboo_action_num >= 8:
+                            self.ridu_s_gotboo_action_num = 8
                             return self.round_wait('所有动作完成', wait=1)
                         
                         # 返回识别结果
