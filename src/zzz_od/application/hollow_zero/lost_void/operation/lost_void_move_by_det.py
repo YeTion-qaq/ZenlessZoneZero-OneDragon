@@ -139,6 +139,14 @@ class LostVoidMoveByDet(ZOperation):
 
         self._reset_turn_calibration_status()
 
+        # 转向用的PID控制器
+        self.turn_pid_Kp = 0.25
+        self.turn_pid_Ki = 0.00 # 位置式PID一般不调Ki，置零即可
+        self.turn_pid_Kd = 0.001
+        self.turn_pid = PID_for_turn_to_target(self.turn_pid_Kp, self.turn_pid_Ki, self.turn_pid_Kd, output_limits=(-200, 200))
+        self.min_turn = 5
+        self.turn_pid.reset()
+
     def _reset_turn_calibration_status(self):
         """
         重置转向校准相关的状态
@@ -195,7 +203,8 @@ class LostVoidMoveByDet(ZOperation):
 
         self.last_target_result = target_result
         pos = target_result.entire_rect.center
-        turn = self.turn_to_target(pos)
+        # turn = self.turn_to_target(pos)
+        turn = self.turn_to_target_by_PID(pos)
         if turn:
             return self.round_wait('转动朝向目标', wait=0.5)
 
@@ -240,7 +249,8 @@ class LostVoidMoveByDet(ZOperation):
 
         self.last_target_result = target_result
         self.last_target_name = target_result.leftest_target_name
-        self.turn_to_target(target_result.entire_rect.center, is_moving=True)
+        # self.turn_to_target(target_result.entire_rect.center, is_moving=True)
+        self.turn_to_target_by_PID(target_result.entire_rect.center, is_moving=True)
         self.ctx.controller.start_moving_forward()
 
         return self.round_wait('移动中', wait_round_time=0.1)
@@ -309,6 +319,48 @@ class LostVoidMoveByDet(ZOperation):
 
         # 更新状态，为下次校准做准备
         self.last_target_x = target.x
+        self.last_actual_turn_distance = turn_distance
+
+        return True
+
+    def turn_to_target_by_PID(self, target: Point, is_moving: bool = False) -> bool:
+        """
+        根据目标的位置,使用PID算法进行转动，转向环一般采用位置式PID算法
+        :param target: 目标位置
+        :param is_moving: 是否在移动中。移动中会使用更保守的转向策略
+        :return: 是否进行了转动
+        """
+
+        # 如果在移动中，可能要采取更保守的PID参数，动态调整PID参数，但是先看看效果（挖坑×
+        # if is_moving:    
+
+        screen_center_x = self.ctx.controller.standard_width / 2  # 屏幕中心X坐标
+        diff_x = target.x - screen_center_x  # 目标与中心的差距
+
+        # 在中心区域内，无需转动
+        if abs(diff_x) <= 20:
+            return False
+
+        # 计算转向指令，首次使用固定值进行侦察，后续使用自适应指令
+        if self.turn_calibration_count == 1:
+            turn_distance = 30 if diff_x > 0 else -30
+            self.turn_calibration_count += 1
+        else:
+            # 采用PID算法计算需要移动的距离
+            turn_distance = self.turn_pid.update(target.x, screen_center_x)
+
+        # 限制指令幅度，防止过小,PID算法中已经对过大进行了限幅
+        if 0 < abs(turn_distance) < self.min_turn:
+            turn_distance = self.min_turn if turn_distance > 0 else -self.min_turn
+
+        if self.ctx.env_config.is_debug:
+            log.debug(f'转向指令: {turn_distance}, 比例系数: {self.turn_pid_Kp:.4f}, 微分系数: {self.turn_pid_Kd:.4f}, 移动中: {is_moving}')
+        # 控制转向的函数
+        self.ctx.controller.turn_by_distance(turn_distance)
+
+        # 总共转动的次数+1
+        self.total_turn_times += 1
+        # 更新状态，为下次校准做准备
         self.last_actual_turn_distance = turn_distance
 
         return True
@@ -553,3 +605,72 @@ class LostVoidMoveByDet(ZOperation):
     def handle_pause(self) -> None:
         ZOperation.handle_pause(self)
         self.ctx.controller.stop_moving_forward()
+
+
+class PID_for_turn_to_target:
+    """
+    动态时间间隔PID控制器（自动计算dt）
+    特点：自动适应调用间隔、抗积分饱和、角度环专用优化
+    
+    :param Kp: 比例系数（响应速度）
+    :param Ki: 积分系数（消除静差）
+    :param Kd: 微分系数（抑制振荡）
+    :param output_limits: 输出限幅(min, max)，保留正负
+    """
+    def __init__(self, Kp, Ki, Kd, output_limits=(None, None)):
+        self.Kp = Kp
+        self.Ki = Ki
+        self.Kd = Kd
+        self.output_limits = output_limits
+        
+        # 状态变量
+        self.integral = 0
+        self.prev_error = 0
+        self.prev_time = time.time()  # 记录上次调用时间[4,6](@ref)
+        self.prev_setpoint = None
+
+    def update(self, setpoint, current_angle):
+        """更新控制器（自动计算时间间隔）"""
+        # 1. 计算动态时间间隔dt[4,6](@ref)
+        current_time = time.time()
+        dt = current_time - self.prev_time
+        dt = max(dt, 1e-5)  # 避免除零错误（最小0.01ms）
+        self.prev_time = current_time
+
+        # 2. 误差计算（保留符号）
+        error = setpoint - current_angle
+        
+        # 3. 动态目标值处理：突变时衰减积分[3](@ref)
+        if self.prev_setpoint is not None and abs(setpoint - self.prev_setpoint) > 5 * abs(self.prev_error):
+            self.integral *= 0.5  # 重置50%积分累积
+        self.prev_setpoint = setpoint
+
+        # 4. PID核心计算（动态dt）[1,6](@ref)
+        P = self.Kp * error
+        self.integral += error * dt  # 积分项 = ∑e(t)·dt
+        derivative = (error - self.prev_error) / dt  # 微分项 = de/dt
+        D = self.Kd * derivative
+        raw_output = P + self.Ki * self.integral + D
+        
+        # 5. 输出限幅与抗积分饱和[3](@ref)
+        output = raw_output
+        low, high = self.output_limits
+        if low is not None and output < low:
+            output = low
+            if error < 0 and self.Ki != 0:  # 仅当误差方向与饱和一致时冻结积分
+                self.integral -= (raw_output - low) / self.Ki
+        elif high is not None and output > high:
+            output = high
+            if error > 0 and self.Ki != 0:
+                self.integral -= (raw_output - high) / self.Ki
+        
+        # 6. 更新状态
+        self.prev_error = error
+        return output
+
+    def reset(self):
+        """重置控制器状态（切换目标时调用）"""
+        self.integral = 0
+        self.prev_error = 0
+        self.prev_time = time.time()
+        self.prev_setpoint = None
