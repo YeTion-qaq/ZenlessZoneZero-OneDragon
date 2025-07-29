@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: 文本-详情
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 192
   - 22
@@ -18,6 +19,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-刷新
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 1678
   - 1002
@@ -32,6 +34,7 @@ area_list:
   goto_list: []
 - area_name: 区域-藏品名称
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 90
   - 480
@@ -46,6 +49,7 @@ area_list:
   goto_list: []
 - area_name: 区域-价格
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 90
   - 735
@@ -60,6 +64,7 @@ area_list:
   goto_list: []
 - area_name: 区域-购买按钮
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 90
   - 780
@@ -74,6 +79,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-购买-确认
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1034
   - 600
@@ -88,6 +94,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-返回
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 82
   - 13
@@ -102,6 +109,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-刷新-可用
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1678
   - 1002
@@ -122,6 +130,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-刷新-确认
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1034
   - 600
@@ -136,6 +145,7 @@ area_list:
   goto_list: []
 - area_name: 标识-血量
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1485
   - 1000
@@ -150,6 +160,7 @@ area_list:
   goto_list: []
 - area_name: 标识-金币
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1485
   - 1000
@@ -164,6 +175,7 @@ area_list:
   goto_list: []
 - area_name: 区域-角色头像
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1224
   - 20

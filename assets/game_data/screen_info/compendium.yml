@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: TAB列表
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 716
   - 120
@@ -18,6 +19,7 @@ area_list:
   goto_list: []
 - area_name: 分类列表
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 166
   - 292
@@ -32,6 +34,7 @@ area_list:
   goto_list: []
 - area_name: 副本列表
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 498
   - 308
@@ -46,6 +49,7 @@ area_list:
   goto_list: []
 - area_name: 传送确认
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1030
   - 602
@@ -60,6 +64,7 @@ area_list:
   goto_list: []
 - area_name: 活跃度奖励-4
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1532
   - 234
@@ -74,6 +79,7 @@ area_list:
   goto_list: []
 - area_name: 活跃度奖励-确认
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 882
   - 704
@@ -88,6 +94,7 @@ area_list:
   goto_list: []
 - area_name: 今日最大活跃度
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 502
   - 270
@@ -102,6 +109,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-退出
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1730
   - 206
@@ -116,6 +124,7 @@ area_list:
   goto_list: []
 - area_name: 前往列表
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1312
   - 334
@@ -130,6 +139,7 @@ area_list:
   goto_list: []
 - area_name: 目标列表-训练
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1254
   - 376
@@ -144,6 +154,7 @@ area_list:
   goto_list: []
 - area_name: 目标列表-作战
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1254
   - 552

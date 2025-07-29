@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: 指令文本区域
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 286
   - 110
@@ -18,6 +19,7 @@ area_list:
   goto_list: []
 - area_name: 按键-时机上鱼
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1516
   - 798
@@ -32,6 +34,7 @@ area_list:
   goto_list: []
 - area_name: 按键-左
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 253
   - 816
@@ -46,6 +49,7 @@ area_list:
   goto_list: []
 - area_name: 按键-右
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1516
   - 798
@@ -60,6 +64,7 @@ area_list:
   goto_list: []
 - area_name: 按键-返回
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 54
   - 8
@@ -74,6 +79,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-点击空白处关闭
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 824
   - 966
@@ -88,6 +94,7 @@ area_list:
   goto_list: []
 - area_name: 标题-挑战结果
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 602
   - 110
@@ -102,6 +109,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-确定
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 870
   - 866
@@ -116,6 +124,7 @@ area_list:
   goto_list: []
 - area_name: 按键-强力-左
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 130
   - 744
@@ -130,6 +139,7 @@ area_list:
   goto_list: []
 - area_name: 按键-强力-右
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1686
   - 746

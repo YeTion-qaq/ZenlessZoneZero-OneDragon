@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: 标题-音擎仓库
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 70
   - 116
@@ -18,6 +19,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-回收
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 250
   - 900
@@ -32,6 +34,7 @@ area_list:
   goto_list: []
 - area_name: 左上角-街区
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 238
   - 26
@@ -47,6 +50,7 @@ area_list:
   - 大世界-普通
 - area_name: TAB-驱动盘
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1510
   - 126

@@ -4,6 +4,7 @@ pc_alt: true
 area_list:
 - area_name: 按钮-信息
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 1728
   - 918
@@ -18,6 +19,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-菜单
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 96
   - 34

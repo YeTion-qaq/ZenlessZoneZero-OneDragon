@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: 文本-详情
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 74
   - 24
@@ -18,6 +19,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-确定
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 866
   - 712
@@ -32,6 +34,7 @@ area_list:
   goto_list: []
 - area_name: 区域-藏品名称
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 90
   - 508
@@ -46,6 +49,7 @@ area_list:
   goto_list: []
 - area_name: 区域-武备名称
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 82
   - 415
@@ -60,6 +64,7 @@ area_list:
   goto_list: []
 - area_name: 区域-标题
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 760
   - 146
@@ -74,6 +79,7 @@ area_list:
   goto_list: []
 - area_name: 迷失之地-TAB
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 0
   - 482
@@ -88,6 +94,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-刷新
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1672
   - 22
@@ -108,6 +115,7 @@ area_list:
   goto_list: []
 - area_name: 区域-藏品已选择
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 82
   - 210
@@ -122,6 +130,7 @@ area_list:
   goto_list: []
 - area_name: 区域-武备标识
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 80
   - 730

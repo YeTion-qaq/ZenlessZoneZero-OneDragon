@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: 点击进入游戏
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 810
   - 846
@@ -18,6 +19,7 @@ area_list:
   goto_list: []
 - area_name: 国服-账号密码
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 608
   - 728
@@ -32,6 +34,7 @@ area_list:
   goto_list: []
 - area_name: 国服-账号输入区域
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 612
   - 368
@@ -46,6 +49,7 @@ area_list:
   goto_list: []
 - area_name: 国服-密码输入区域
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 612
   - 470
@@ -60,6 +64,7 @@ area_list:
   goto_list: []
 - area_name: 国服-同意按钮
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 606
   - 576
@@ -74,6 +79,7 @@ area_list:
   goto_list: []
 - area_name: 国服-账号密码进入游戏
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 608
   - 648
@@ -88,6 +94,7 @@ area_list:
   goto_list: []
 - area_name: 切换账号确定
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1036
   - 604
@@ -102,6 +109,7 @@ area_list:
   goto_list: []
 - area_name: 切换账号
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1796
   - 974
@@ -116,6 +124,7 @@ area_list:
   goto_list: []
 - area_name: B服-登陆
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 839
   - 626
@@ -130,6 +139,7 @@ area_list:
   goto_list: []
 - area_name: B服-账号输入区域
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 889
   - 443
@@ -144,6 +154,7 @@ area_list:
   goto_list: []
 - area_name: B服-密码输入区域
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1891
   - 495
@@ -158,6 +169,7 @@ area_list:
   goto_list: []
 - area_name: B服-同意按钮
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 834
   - 571
@@ -172,6 +184,7 @@ area_list:
   goto_list: []
 - area_name: B服-账号删除区域
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1032
   - 436
@@ -186,6 +199,7 @@ area_list:
   goto_list: []
 - area_name: 标题-退出登录
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 546
   - 250
@@ -200,6 +214,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-退出登录-确定
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1030
   - 752
@@ -214,6 +229,7 @@ area_list:
   goto_list: []
 - area_name: 国服-账号密码-新
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 608
   - 768
@@ -228,6 +244,7 @@ area_list:
   goto_list: []
 - area_name: 国服-账号输入区域-新
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 612
   - 335
@@ -242,6 +259,7 @@ area_list:
   goto_list: []
 - area_name: 国服-密码输入区域-新
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 612
   - 430
@@ -256,6 +274,7 @@ area_list:
   goto_list: []
 - area_name: 国服-同意按钮-新
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 606
   - 605
@@ -270,6 +289,7 @@ area_list:
   goto_list: []
 - area_name: 国服-账号密码进入游戏-新
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 608
   - 680
@@ -284,6 +304,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-登陆其他账号
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 614
   - 680
@@ -298,6 +319,7 @@ area_list:
   goto_list: []
 - area_name: 国际服-点击登录
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 810
   - 846
@@ -312,6 +334,7 @@ area_list:
   goto_list: []
 - area_name: 国际服-账号输入区域
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 612
   - 368
@@ -326,6 +349,7 @@ area_list:
   goto_list: []
 - area_name: 国际服-密码输入区域
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 612
   - 470
@@ -340,6 +364,7 @@ area_list:
   goto_list: []
 - area_name: 国际服-账号密码进入游戏
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 608
   - 625
@@ -354,6 +379,7 @@ area_list:
   goto_list: []
 - area_name: 国际服-换服
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 782
   - 966
@@ -368,6 +394,7 @@ area_list:
   goto_list: []
 - area_name: 国际服-换服-欧洲
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 616
   - 428
@@ -382,6 +409,7 @@ area_list:
   goto_list: []
 - area_name: 国际服-换服-美国
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 616
   - 518
@@ -396,6 +424,7 @@ area_list:
   goto_list: []
 - area_name: 国际服-换服-亚洲
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 616
   - 616
@@ -410,6 +439,7 @@ area_list:
   goto_list: []
 - area_name: 国际服-换服-港澳台
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 616
   - 714
@@ -424,6 +454,7 @@ area_list:
   goto_list: []
 - area_name: 重试
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 822
   - 598
@@ -438,6 +469,7 @@ area_list:
   goto_list: []
 - area_name: 一周年自选奖励
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1576
   - 118

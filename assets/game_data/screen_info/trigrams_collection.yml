@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: 区域-获取卦象
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1318
   - 298

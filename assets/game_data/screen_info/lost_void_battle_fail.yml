@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: 按钮-撤退
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 530
   - 850
@@ -18,6 +19,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-重播
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 878
   - 850
@@ -32,6 +34,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-分析
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 1226
   - 848

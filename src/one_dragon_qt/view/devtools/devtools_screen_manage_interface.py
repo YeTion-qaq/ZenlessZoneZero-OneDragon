@@ -123,7 +123,7 @@ class DevtoolsScreenManageInterface(VerticalScrollInterface):
         self.area_table.setBorderVisible(True)
         self.area_table.setBorderRadius(8)
         self.area_table.setWordWrap(True)
-        self.area_table.setColumnCount(10)
+        self.area_table.setColumnCount(11)
         self.area_table.verticalHeader().hide()
         self.area_table.setHorizontalHeaderLabels([
             gt('操作'),
@@ -135,6 +135,7 @@ class DevtoolsScreenManageInterface(VerticalScrollInterface):
             gt('阈值'),
             gt('颜色范围'),
             gt('唯一标识'),
+            gt('灰度化'),
             gt('前往画面')
         ])
         self.area_table.setColumnWidth(0, 40)  # 操作
@@ -239,6 +240,11 @@ class DevtoolsScreenManageInterface(VerticalScrollInterface):
             id_check.setProperty('area_name', area_item.area_name)
             id_check.stateChanged.connect(self.on_area_id_check_changed)
 
+            gray_check = CheckBox()
+            gray_check.setChecked(area_item.gray_mark)
+            gray_check.setProperty('area_name', area_item.area_name)
+            gray_check.stateChanged.connect(self.on_area_gray_check_changed)
+
             self.area_table.setCellWidget(idx, 0, del_btn)
             self.area_table.setItem(idx, 1, QTableWidgetItem(area_item.area_name))
             self.area_table.setItem(idx, 2, QTableWidgetItem(str(area_item.pc_rect)))
@@ -248,7 +254,8 @@ class DevtoolsScreenManageInterface(VerticalScrollInterface):
             self.area_table.setItem(idx, 6, QTableWidgetItem(str(area_item.template_match_threshold)))
             self.area_table.setItem(idx, 7, QTableWidgetItem(str(area_item.color_range_display_text)))
             self.area_table.setCellWidget(idx, 8, id_check)
-            self.area_table.setItem(idx, 9, QTableWidgetItem(area_item.goto_list_display_text))
+            self.area_table.setCellWidget(idx, 9, gray_check)
+            self.area_table.setItem(idx, 10, QTableWidgetItem(area_item.goto_list_display_text))
 
 
         add_btn = ToolButton(FluentIcon.ADD, parent=None)
@@ -263,6 +270,7 @@ class DevtoolsScreenManageInterface(VerticalScrollInterface):
         self.area_table.setItem(area_cnt, 7, QTableWidgetItem(''))
         self.area_table.setItem(area_cnt, 8, QTableWidgetItem(''))
         self.area_table.setItem(area_cnt, 9, QTableWidgetItem(''))
+        self.area_table.setItem(area_cnt, 10, QTableWidgetItem(''))
 
         self.area_table.blockSignals(False)
 
@@ -558,6 +566,16 @@ class DevtoolsScreenManageInterface(VerticalScrollInterface):
             if row_idx < 0 or row_idx >= len(self.chosen_screen.area_list):
                 return
             self.chosen_screen.area_list[row_idx].id_mark = btn.isChecked()
+
+    def on_area_gray_check_changed(self):
+        if self.chosen_screen is None:
+            return
+        btn: CheckBox = self.sender()
+        if btn is not None:
+            row_idx = self.area_table.indexAt(btn.pos()).row()
+            if row_idx < 0 or row_idx >= len(self.chosen_screen.area_list):
+                return
+            self.chosen_screen.area_list[row_idx].gray_mark = btn.isChecked()
 
     def on_area_table_cell_clicked(self, row: int, column: int):
         if self.area_table_row_selected == row:

@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: 标题-驱动仓库
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 70
   - 116
@@ -18,6 +19,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-拆解
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 250
   - 900
@@ -33,6 +35,7 @@ area_list:
   - 仓库-驱动仓库-驱动盘拆解
 - area_name: 左上角-街区
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 236
   - 28

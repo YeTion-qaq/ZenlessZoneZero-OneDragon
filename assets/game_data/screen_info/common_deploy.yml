@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: 按钮-下一步
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1586
   - 1002
@@ -18,6 +19,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-出战
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1570
   - 982
@@ -32,6 +34,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-队员数量少-确认
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1030
   - 602
@@ -46,6 +49,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-等级低-确定并出战
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1030
   - 602

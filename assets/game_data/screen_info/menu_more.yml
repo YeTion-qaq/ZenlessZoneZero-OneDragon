@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: 标题-更多功能
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 522
   - 210
@@ -18,6 +19,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-关闭
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 1302
   - 166
@@ -32,6 +34,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-预备编队
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 478
   - 282
@@ -46,6 +49,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-兑换码
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 478
   - 282

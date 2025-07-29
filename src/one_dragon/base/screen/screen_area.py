@@ -17,6 +17,7 @@ class ScreenArea:
                  template_match_threshold: float = 0.7,
                  pc_alt: bool = False,
                  id_mark: bool = False,
+                 gray_mark: bool = False,
                  goto_list: Optional[list[str]] = None,
                  color_range: Optional[list[list[int]]] = None,
                  ):
@@ -29,6 +30,7 @@ class ScreenArea:
         self.template_match_threshold: float = template_match_threshold
         self.pc_alt: bool = pc_alt  # PC端需要使用ALT后才能点击
         self.id_mark: bool = id_mark  # 是否用于画面的唯一标识
+        self.gray_mark: bool = gray_mark  # 是否灰度化区域
         self.goto_list: list[str] = [] if goto_list is None else goto_list  # 交互后 可能会跳转的画面名称列表
         self.color_range: Optional[list[list[int]]] = color_range  # 识别时候的筛选的颜色范围 文本时候有效
 
@@ -127,6 +129,7 @@ class ScreenArea:
         order_dict = dict()
         order_dict['area_name'] = self.area_name
         order_dict['id_mark'] = self.id_mark
+        order_dict['gray_mark'] = self.gray_mark
         order_dict['pc_rect'] = [self.pc_rect.x1, self.pc_rect.y1, self.pc_rect.x2, self.pc_rect.y2]
         order_dict['text'] = self.text
         order_dict['lcs_percent'] = self.lcs_percent

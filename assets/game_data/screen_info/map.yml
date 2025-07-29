@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: 传送点名称
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 70
   - 1000
@@ -18,6 +19,7 @@ area_list:
   goto_list: []
 - area_name: 确认
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1024
   - 600

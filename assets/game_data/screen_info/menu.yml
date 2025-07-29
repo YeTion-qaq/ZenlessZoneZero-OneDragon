@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: 返回
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 82
   - 13
@@ -18,6 +19,7 @@ area_list:
   goto_list: []
 - area_name: 邮件
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 934
   - 544
@@ -32,6 +34,7 @@ area_list:
   goto_list: []
 - area_name: 底部列表
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 200
   - 924
@@ -46,6 +49,7 @@ area_list:
   goto_list: []
 - area_name: 更多登出确认
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1036
   - 604
@@ -60,6 +64,7 @@ area_list:
   goto_list: []
 - area_name: 更多功能区域
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 474
   - 280
@@ -74,6 +79,7 @@ area_list:
   goto_list: []
 - area_name: 兑换码输入框
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 718
   - 536
@@ -88,6 +94,7 @@ area_list:
   goto_list: []
 - area_name: 兑换码兑换
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 878
   - 690
@@ -102,6 +109,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-返回
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 82
   - 13
@@ -117,6 +125,7 @@ area_list:
   - 大世界-普通
 - area_name: 底部-快捷手册
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 200
   - 924
@@ -132,6 +141,7 @@ area_list:
   - 快捷手册-训练
 - area_name: 按钮-朋友
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 495
   - 11
@@ -146,6 +156,7 @@ area_list:
   goto_list: []
 - area_name: 底部-仓库
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 200
   - 924
@@ -161,6 +172,7 @@ area_list:
   - 仓库-音擎仓库
 - area_name: 底部-邮件
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 200
   - 924
@@ -176,6 +188,7 @@ area_list:
   - 邮件
 - area_name: 底部-更多
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 200
   - 924
@@ -191,6 +204,7 @@ area_list:
   - 菜单-更多功能
 - area_name: 文本-电量
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1200
   - 25

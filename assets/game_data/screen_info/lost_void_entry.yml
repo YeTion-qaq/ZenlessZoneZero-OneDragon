@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: 按钮-街区
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 234
   - 26
@@ -19,6 +20,7 @@ area_list:
   - 大世界-普通
 - area_name: 按钮-悬赏委托
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 1550
   - 24
@@ -33,6 +35,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-战线肃清
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 850
   - 206
@@ -48,6 +51,7 @@ area_list:
   - 迷失之地-战线肃清
 - area_name: 按钮-悬赏委托-全部领取
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1342
   - 316
@@ -62,6 +66,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-悬赏委托-关闭
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1526
   - 198
@@ -76,6 +81,7 @@ area_list:
   goto_list: []
 - area_name: 按键-特遣调查
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 196
   - 212
