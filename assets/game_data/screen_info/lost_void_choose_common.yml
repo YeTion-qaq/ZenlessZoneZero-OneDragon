@@ -19,7 +19,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-确定
   id_mark: true
-  gray_mark: false
+  gray_mark: true
   pc_rect:
   - 866
   - 712
