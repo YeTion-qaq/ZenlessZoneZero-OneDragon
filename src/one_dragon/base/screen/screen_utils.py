@@ -54,6 +54,11 @@ def find_area_in_screen(ctx: OneDragonContext, screen: MatLike, area: ScreenArea
     find: bool = False
     if area.is_text_area:
         if ctx.env_config.ocr_cache:
+            if area.gray_mark:
+                # 对区域进行灰度化处理
+                gray_image = cv2.cvtColor(screen, cv2.COLOR_BGR2GRAY)
+                # 保持3通道以便于OCR处理
+                screen = cv2.cvtColor(gray_image, cv2.COLOR_GRAY2RGB)
             ocr_result_map = ctx.ocr_service.get_ocr_result_list(
                 image=screen,
                 color_range=area.color_range,
@@ -63,6 +68,11 @@ def find_area_in_screen(ctx: OneDragonContext, screen: MatLike, area: ScreenArea
             rect = area.rect
             part = cv2_utils.crop_image_only(screen, rect)
 
+            if area.gray_mark:
+                # 对区域进行灰度化处理
+                gray_image = cv2.cvtColor(part, cv2.COLOR_BGR2GRAY)
+                # 保持3通道以便于OCR处理
+                part = cv2.cvtColor(gray_image, cv2.COLOR_GRAY2RGB)
             if area.color_range is None:
                 to_ocr = part
             else:
@@ -81,6 +91,12 @@ def find_area_in_screen(ctx: OneDragonContext, screen: MatLike, area: ScreenArea
     elif area.is_template_area:
         rect = area.rect
         part = cv2_utils.crop_image_only(screen, rect)
+
+        if area.gray_mark:
+            # 对区域进行灰度化处理
+            gray_image = cv2.cvtColor(part, cv2.COLOR_BGR2GRAY)
+            # 保持3通道以便于OCR处理
+            part = cv2.cvtColor(gray_image, cv2.COLOR_GRAY2RGB)
 
         mrl = ctx.tm.match_template(part, area.template_sub_dir, area.template_id,
                                     threshold=area.template_match_threshold)
