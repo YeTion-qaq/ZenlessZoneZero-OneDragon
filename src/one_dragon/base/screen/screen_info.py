@@ -78,6 +78,7 @@ class ScreenInfo(YamlOperator):
                 color_range=data_area.get('color_range'),
                 pc_alt=self.pc_alt,
                 id_mark=data_area.get('id_mark', False),
+                gray_mark=data_area.get('gray_mark', False),
                 goto_list=data_area.get('goto_list', [])
             )
             self.area_list.append(area)
