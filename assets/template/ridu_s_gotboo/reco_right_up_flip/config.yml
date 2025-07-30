@@ -1,0 +1,8 @@
+sub_dir: ridu_s_gotboo
+template_id: reco_right_up_flip
+template_name: 丽都有布-识别-右手-上-翻转
+template_shape: circle
+auto_mask: true
+point_list:
+- 1601, 698
+- 1601, 748
