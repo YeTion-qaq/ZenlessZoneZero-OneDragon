@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: TAB-训练
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 708
   - 118
@@ -19,6 +20,7 @@ area_list:
   - 快捷手册-训练
 - area_name: TAB-目标
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 708
   - 118
@@ -34,6 +36,7 @@ area_list:
   - 快捷手册-目标
 - area_name: TAB-日常
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 708
   - 118
@@ -55,6 +58,7 @@ area_list:
   - 快捷手册-日常
 - area_name: TAB-作战
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 708
   - 118
@@ -70,6 +74,7 @@ area_list:
   - 快捷手册-作战
 - area_name: TAB-战术
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 708
   - 118
@@ -85,6 +90,7 @@ area_list:
   - 快捷手册-战术
 - area_name: 按钮-关闭
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1728
   - 206

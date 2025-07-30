@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: 副本名称列表
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 148
   - 714
@@ -18,6 +19,7 @@ area_list:
   goto_list: []
 - area_name: 剩余电量
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1430
   - 1000
@@ -32,6 +34,7 @@ area_list:
   goto_list: []
 - area_name: 需要电量
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1497
   - 1000

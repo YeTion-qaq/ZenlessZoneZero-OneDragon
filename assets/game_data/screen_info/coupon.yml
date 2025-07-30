@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: 确认
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 920
   - 737
@@ -18,6 +19,7 @@ area_list:
   goto_list: []
 - area_name: 绳网信用
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1090
   - 362
@@ -32,6 +34,7 @@ area_list:
   goto_list: []
 - area_name: 使用
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1040
   - 1005
@@ -46,6 +49,7 @@ area_list:
   goto_list: []
 - area_name: 数量
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 936
   - 1012

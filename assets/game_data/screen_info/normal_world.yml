@@ -4,6 +4,7 @@ pc_alt: true
 area_list:
 - area_name: 信息
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1728
   - 918
@@ -18,6 +19,7 @@ area_list:
   goto_list: []
 - area_name: 菜单
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 100
   - 54
@@ -32,6 +34,7 @@ area_list:
   goto_list: []
 - area_name: 地图
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1730
   - 318
@@ -46,6 +49,7 @@ area_list:
   goto_list: []
 - area_name: 快捷手册
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1530
   - 44
@@ -60,6 +64,7 @@ area_list:
   goto_list: []
 - area_name: 好感度标题
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 892
   - 798
@@ -74,6 +79,7 @@ area_list:
   goto_list: []
 - area_name: 好感度选项
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1420
   - 552
@@ -88,6 +94,7 @@ area_list:
   goto_list: []
 - area_name: 对话框取消
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 726
   - 600
@@ -102,6 +109,7 @@ area_list:
   goto_list: []
 - area_name: 小地图
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1630
   - 183

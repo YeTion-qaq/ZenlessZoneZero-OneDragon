@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: 按钮-街区
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 238
   - 26
@@ -19,6 +20,7 @@ area_list:
   - 大世界
 - area_name: 菜单-返回
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 82
   - 13
@@ -34,6 +36,7 @@ area_list:
   - 迷失之地-入口
 - area_name: 按钮-特遣任务
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 1322
   - 1002
@@ -48,6 +51,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-下一步
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1606
   - 1002
@@ -62,6 +66,7 @@ area_list:
   goto_list: []
 - area_name: 区域-代理人头像
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 990
   - 396
@@ -76,6 +81,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-调查战略
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1708
   - 198

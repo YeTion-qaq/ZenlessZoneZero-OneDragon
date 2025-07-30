@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: 刮刮卡
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 94
   - 956
@@ -18,6 +19,7 @@ area_list:
   goto_list: []
 - area_name: 每日可刮取一次
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 704
   - 656
@@ -32,6 +34,7 @@ area_list:
   goto_list: []
 - area_name: 刮层-1
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 780
   - 522
@@ -46,6 +49,7 @@ area_list:
   goto_list: []
 - area_name: 刮层-2
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 782
   - 556
@@ -60,6 +64,7 @@ area_list:
   goto_list: []
 - area_name: 刮层-3
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 788
   - 590
@@ -74,6 +79,7 @@ area_list:
   goto_list: []
 - area_name: 叫醒他
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1434
   - 638
@@ -88,6 +94,7 @@ area_list:
   goto_list: []
 - area_name: 嗷呜被你叫醒了
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 780
   - 518
@@ -102,6 +109,7 @@ area_list:
   goto_list: []
 - area_name: 嗷呜对话
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 686
   - 830
@@ -116,6 +124,7 @@ area_list:
   goto_list: []
 - area_name: 嗷呜标题
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 890
   - 792
@@ -130,6 +139,7 @@ area_list:
   goto_list: []
 - area_name: 叫醒嗷呜
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1434
   - 638
@@ -144,6 +154,7 @@ area_list:
   goto_list: []
 - area_name: 对话选项
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 1438
   - 560
@@ -158,6 +169,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-同类型确认
   id_mark: false
+  gray_mark: false
   pc_rect:
   - 882
   - 602

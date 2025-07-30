@@ -4,6 +4,7 @@ pc_alt: false
 area_list:
 - area_name: 按钮-定期采办
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 1586
   - 110
@@ -18,6 +19,7 @@ area_list:
   goto_list: []
 - area_name: 按钮-邻里心愿
   id_mark: true
+  gray_mark: false
   pc_rect:
   - 1306
   - 110
