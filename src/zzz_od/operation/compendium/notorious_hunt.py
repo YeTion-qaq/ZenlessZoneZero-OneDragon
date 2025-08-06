@@ -245,7 +245,7 @@ class NotoriousHunt(ZOperation):
             return self.round_by_op_result(op.execute())
 
     @node_from(from_name='选择难度')
-    @node_from(from_name='恢复电量')
+    @node_from(from_name='恢复电量', status='恢复电量成功')
     @operation_node(name='下一步', node_max_retry_times=10)  # 部分机器加载较慢 延长出战的识别时间
     def click_next(self) -> OperationRoundResult:
         # 防止前面电量识别错误
@@ -332,7 +332,7 @@ class NotoriousHunt(ZOperation):
         result = self.round_by_find_area(self.last_screenshot, '战斗画面', '按键-交互')
         if result.is_success:
             self.ctx.controller.interact(press=True, press_time=0.2, release=True)
-            return self.round_success(status=result.status)
+            return self.round_success(status=result.status, wait=2)  # 按键后 等待一段时间选择鸣徽界面出现
 
         det_result: DetectFrameResult = self.ctx.lost_void.detector.run(self.last_screenshot, label_list=['0001-距离'])
         self.auto_op.auto_battle_context.check_battle_distance(self.last_screenshot)

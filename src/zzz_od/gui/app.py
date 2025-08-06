@@ -25,6 +25,7 @@ try:
     from zzz_od.gui.view.one_dragon.zzz_one_dragon_interface import ZOneDragonInterface
     from zzz_od.gui.view.setting.app_setting_interface import AppSettingInterface
     from zzz_od.gui.widgets.zzz_welcome_dialog import ZWelcomeDialog
+    from zzz_od.gui.view.world_patrol.world_patrol_interface import WorldPatrolInterface
 
     _init_error = None
 
@@ -84,10 +85,13 @@ try:
 
         # 继承初始化函数
         def init_window(self):
-            self.resize(1050, 700)
+            self.resize(1095, 730)  # 3:2比例
 
             # 初始化位置
-            self.move(100, 100)
+            screen = QApplication.primaryScreen()
+            geometry = screen.availableGeometry()
+            w, h = geometry.width(), geometry.height()
+            self.move(w // 2 - self.width() // 2, h // 2 - self.height() // 2)
 
             # 设置配置ID
             self.setObjectName("PhosWindow")
@@ -134,6 +138,9 @@ try:
 
             # 空洞
             self.add_sub_interface(HollowZeroInterface(self.ctx, parent=self))
+
+            # 锄大地
+            self.add_sub_interface(WorldPatrolInterface(self.ctx, parent=self))
 
             # 游戏助手
             self.add_sub_interface(GameAssistantInterface(self.ctx, parent=self))
