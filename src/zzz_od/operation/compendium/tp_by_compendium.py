@@ -59,7 +59,8 @@ class TransportByCompendium(ZOperation):
     @node_from(from_name='快捷手册')
     @operation_node(name='选择TAB')
     def choose_tab(self) -> OperationRoundResult:
-        return self.round_by_goto_screen(screen_name=f'快捷手册-{self.tab_name}')
+        screen_name=f"快捷手册-{self.tab_name}"
+        return self.round_by_goto_screen(self.last_screenshot,screen_name)
 
     @node_from(from_name='选择TAB')
     @operation_node(name='选择分类')
